@@ -1,0 +1,78 @@
+<!-- detail.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ジャンル詳細</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    .image-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .image-list img {
+      width: 300px;
+      border-radius: 8px;
+    }
+    .description-list {
+      margin-top: 30px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .description-list p {
+      font-size: 16px;
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="genre-title">ジャンル詳細</h1>
+  <div class="image-list" id="image-list"></div>
+  <div class="description-list" id="description-list"></div>
+
+  <!-- ジャンルデータを読み込む -->
+  <script src="genre-data.js"></script>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const genre = params.get("genre");
+
+    const data = genreData[genre];
+
+    const titleElem = document.getElementById("genre-title");
+    const imageListElem = document.getElementById("image-list");
+    const descriptionListElem = document.getElementById("description-list");
+
+    if (data) {
+      titleElem.textContent = `${data.title} のページ`;
+
+      // 画像の表示
+      data.images.forEach(url => {
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = data.title;
+        imageListElem.appendChild(img);
+      });
+
+      // 説明文の表示
+      data.descriptions.forEach(text => {
+        const p = document.createElement("p");
+        p.textContent = text;
+        descriptionListElem.appendChild(p);
+      });
+
+    } else {
+      titleElem.textContent = "ジャンルが見つかりません";
+    }
+  </script>
+</body>
+</html>

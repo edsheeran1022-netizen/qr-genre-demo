@@ -1,0 +1,44 @@
+<!-- genre.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ジャンル選択</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .genre-button {
+      display: inline-block;
+      margin: 15px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .genre-button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h1>ジャンルを選んでください</h1>
+  <button class="genre-button" onclick="goToDetail('celebrity')">有名人</button>
+  <button class="genre-button" onclick="goToDetail('vehicle')">自動車</button>
+  <button class="genre-button" onclick="goToDetail('place')">観光地</button>
+  <button class="genre-button" onclick="goToDetail('food')">名古屋めし</button>
+  <button class="genre-button" onclick="goToDetail('history')">歴史</button>
+
+  <script>
+    function goToDetail(genre) {
+      // detail.html にジャンルをパラメータとして渡して遷移
+      location.href = `detail.html?genre=${genre}`;
+    }
+  </script>
+</body>
+</html>
